@@ -1,0 +1,20 @@
+﻿(define (problem basicProblem1)
+    (:domain redflix)
+    (:objects c1 - Content c2 - Content c3 - Content c4 - Content c5 - Content c6 - Content)
+    (:init
+        (predecessor c2 c1)
+        (predecessor c3 c1)
+        (predecessor c1 c5)
+        (predecessor c4 c5)
+        (predecessor c3 c4)
+        (= (predecessorsToAsign c1) 2)
+        (= (predecessorsToAsign c5) 2)
+        (= (predecessorsToAsign c4) 1)
+        (= (predecessorsToAsign c2) 0)
+        (= (predecessorsToAsign c3) 0)
+        (= (predecessorsToAsign c6) 0)
+
+
+    )
+    (:goal (forall (?content - Content) (asignedContent ?content)))
+)
