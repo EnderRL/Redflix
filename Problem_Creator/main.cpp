@@ -7,12 +7,13 @@ typedef list<pair<int, int>>::iterator IteratorP;
 typedef list<int>::iterator IteratorI;
 
 int main(int argc, char* argv[]) {
-    if (argc != 3) {
-        cout << "Usage: Problem_Creator [number of contents] [number of predecessors]" << endl;
+    if (argc != 4) {
+        cout << "Usage: Problem_Creator [number of contents] [number of predecessors] [number of parallels]" << endl;
         exit(-1);
     }
     int numContents = atoi(argv[1]);
     int numPredecessors = atoi(argv[2]);
+    int numParallels = atoi(argv[3]);
 
     vector<int> contents(numContents);
     list<int> listContents;
@@ -53,8 +54,9 @@ int main(int argc, char* argv[]) {
         cout << " d" << i << " - Day";
     }
     cout << ")" << endl << "(:init" << endl;
+
     vector<int> predecessorsToAsign(numContents, 0);
-    for (int i = 0; i < numPredecessors; ++i) {
+    for (int i = 0; i < numPredecessors and possibleEdges.size() > 0; ++i) {
         int random = rand()%possibleEdges.size();
 
         IteratorP it = possibleEdges.begin();
@@ -66,6 +68,19 @@ int main(int argc, char* argv[]) {
 
         possibleEdges.erase(it);
     }
+
+    for (int i = 0; i < numParallels and possibleEdges.size() > 0; ++i) {
+        int random = rand()%possibleEdges.size();
+
+        IteratorP it = possibleEdges.begin();
+        for (int j = 0; j < random; ++j) ++it;
+        pair<int, int>& edge = *it;
+
+        cout << "\t(parallel c" << edge.first << " c" << edge.second  << ")" << endl;
+
+        possibleEdges.erase(it);
+    }
+
     for (int i = 0; i < numContents; ++i) {
         cout << "\t(= (numDay d" << i << ") " << i << ")" << endl;
     }
@@ -74,7 +89,7 @@ int main(int argc, char* argv[]) {
     }
 
     cout << ")" << endl;
-    cout << " (:goal (forall (?content - Content) (asignedContent ?content)))" << endl << ")" << endl;
+    cout << " (:goal (forall (?content - Content) (asignedContent ?content - Content)))" << endl << ")" << endl;
 
 }
 
