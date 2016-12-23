@@ -53,19 +53,24 @@ int main(int argc, char* argv[]) {
         cout << " d" << i << " - Day";
     }
     cout << ")" << endl << "(:init" << endl;
-   for (int i = 0; i < numPredecessors; ++i) {
+    vector<int> predecessorsToAsign(numContents, 0);
+    for (int i = 0; i < numPredecessors; ++i) {
         int random = rand()%possibleEdges.size();
 
         IteratorP it = possibleEdges.begin();
         for (int j = 0; j < random; ++j) ++it;
         pair<int, int>& edge = *it;
 
+        ++predecessorsToAsign[edge.second];
         cout << "\t(predecessor c" << edge.first << " c" << edge.second  << ")" << endl;
 
         possibleEdges.erase(it);
     }
     for (int i = 0; i < numContents; ++i) {
         cout << "\t(= (numDay d" << i << ") " << i << ")" << endl;
+    }
+    for (int i = 0; i < numContents; ++i) {
+        cout << "\t(= (predecessorsToAsign c" << i << ") " << predecessorsToAsign[i] << ")" << endl;
     }
 
     cout << ")" << endl;
