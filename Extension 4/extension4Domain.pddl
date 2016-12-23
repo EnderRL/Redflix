@@ -23,7 +23,8 @@
     (:functions
         (predecessorsToAsign ?content - Content)
         (numDay ?D - Day)
-        (numContentDay ?D - Day)
+        (minDay ?D - Day)
+        (minContent ?C - Content)
     )
 
     (:action asignContentToDay
@@ -31,7 +32,7 @@
         :precondition (and 
 			(not (asignedContent ?content))
 			(= (predecessorsToAsign ?content) 0)
-			(< (numContentDay ?day) 3)
+			(<= (+ (minDay ?day) (minContent ?content)) 200)
 			(forall (?contentToCheck - Content ?dayToCheck - Day) 
 			   (and 
 			    (imply (and (predecessor ?contentToCheck ?content) (visualizationDay ?contentToCheck ?dayToCheck)) (< (numDay ?dayToCheck) (numDay ?day)))
@@ -47,8 +48,8 @@
 		      )
         :effect 
             (and  
+		(increase (minDay ?day) (minContent ?content))
 		(asignedContent ?content)
-		(increase (numContentDay ?day) 1)
 		(visualizationDay ?content ?day)
                 (forall (?content2 - Content)
                     (when (predecessor ?content ?content2)
