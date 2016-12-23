@@ -47,12 +47,12 @@ int main(int argc, char* argv[]) {
             "(:domain redflix)" << endl <<
             "(:objects";
     for (int i = 0; i < numContents; ++i) {
-        cout << " c" << i << " - Content";
+        cout << endl << "\tc" << i << " - Content";
     }
     for (int i = 0; i < numContents; ++i) {
-        cout << " d" << i << " - Day";
+        cout << endl << "\td" << i << " - Day";
     }
-    cout << ")" << endl << "(:init" << endl;
+    cout << endl << ")" << endl << "(:init" << endl;
     vector<int> predecessorsToAsign(numContents, 0);
     for (int i = 0; i < numPredecessors; ++i) {
         int random = rand()%possibleEdges.size();
