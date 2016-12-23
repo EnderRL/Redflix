@@ -18,6 +18,8 @@
         (parallel ?C1 - Content ?C2 -Content)
         (visualizationDay ?C - Content ?D - Day)
         (asignedContent ?C - Content)
+        (desiredContent ?C - Content)
+
     )
 
     (:functions
@@ -26,6 +28,17 @@
         (numContentDay ?D - Day)
     )
 
+    (:action makeDesired
+        :parameters (?content - Content)
+        :precondition (and (desiredContent ?content) (> (predecessorsToAsign ?content) 0))
+        :effect 
+            (forall (?content2 - Content)
+                (when (predecessor ?content2 ?content)
+                    (desiredPredecessor ?content2)
+                )
+            )
+    )
+    
     (:action asignContentToDay
         :parameters (?content - Content ?day - Day)
         :precondition (and 
