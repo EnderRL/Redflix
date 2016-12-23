@@ -1,0 +1,32 @@
+1
+7
+0
+4
+3
+5
+6
+8
+2
+9
+(define (problem basicProblem1)
+(:domain redflix)
+(:objects c0 - Content c1 - Content c2 - Content c3 - Content c4 - Content c5 - Content c6 - Content c7 - Content c8 - Content c9 - Content d0 - Day d1 - Day d2 - Day d3 - Day d4 - Day d5 - Day d6 - Day d7 - Day d8 - Day d9 - Day)
+(:init
+	(predecessor c1 c0)
+	(predecessor c7 c8)
+	(predecessor c5 c9)
+	(predecessor c0 c8)
+	(predecessor c4 c6)
+	(= (numDay d0) 0)
+	(= (numDay d1) 1)
+	(= (numDay d2) 2)
+	(= (numDay d3) 3)
+	(= (numDay d4) 4)
+	(= (numDay d5) 5)
+	(= (numDay d6) 6)
+	(= (numDay d7) 7)
+	(= (numDay d8) 8)
+	(= (numDay d9) 9)
+)
+ (:goal (forall (?content - Content) (asignedContent ?content)))
+)
