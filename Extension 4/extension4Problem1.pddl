@@ -11,7 +11,10 @@
       
     )
     (:init
-        
+        (desiredContent c1)
+		(desiredContent c2)
+		(desiredContent c3)
+		(desiredContent c4)
         (= (predecessorsToAsign c1) 0)
         (= (predecessorsToAsign c2) 0)
         (= (predecessorsToAsign c3) 0)
@@ -28,5 +31,5 @@
         (= (minContent c4) 200)
  
     )
-    (:goal (forall (?content - Content) (asignedContent ?content)))
+    (:goal (forall (?content - Content) (imply (desiredContent ?content) (asignedContent ?content)))
 )
