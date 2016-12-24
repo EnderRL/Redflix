@@ -32,7 +32,7 @@
         :effect 
             (forall (?content2 - Content)
                 (when (predecessor ?content2 ?content)
-                    (desiredPredecessor ?content2)
+                    (desiredContent ?content2)
                 )
             )
     )
@@ -43,9 +43,12 @@
 			(not (asignedContent ?content))
 			(= (predecessorsToAsign ?content) 0)
 			(forall (?contentToCheck - Content ?dayToCheck - Day) 
-			   (imply (and (predecessor ?contentToCheck ?content) (visualizationDay ?contentToCheck ?dayToCheck)) (< (numDay ?dayToCheck) (numDay ?day)))
+				(and 
+					(imply (and (predecessor ?contentToCheck ?content) (visualizationDay ?contentToCheck ?dayToCheck))
+						(< (numDay ?dayToCheck) (numDay ?day))
+					)
+			   	)
 			)
-		      )
         :effect 
             (and  
 		(asignedContent ?content)

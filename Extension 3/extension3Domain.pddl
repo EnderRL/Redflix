@@ -34,30 +34,33 @@
         :effect 
             (forall (?content2 - Content)
                 (when (predecessor ?content2 ?content)
-                    (desiredPredecessor ?content2)
+                    (desiredContent ?content2)
                 )
             )
     )
     
     (:action asignContentToDay
         :parameters (?content - Content ?day - Day)
-        :precondition (and 
+        :precondition 
+		(and 
 			(not (asignedContent ?content))
+			(desiredContent ?content)
 			(= (predecessorsToAsign ?content) 0)
 			(< (numContentDay ?day) 3)
 			(forall (?contentToCheck - Content ?dayToCheck - Day) 
-			   (and 
-			    (imply (and (predecessor ?contentToCheck ?content) (visualizationDay ?contentToCheck ?dayToCheck)) (< (numDay ?dayToCheck) (numDay ?day)))
-			    (imply (and (or (parallel ?contentToCheck ?content) (parallel ?content ?contentToCheck)) (visualizationDay ?contentToCheck ?dayToCheck)) 
-				   (or 
-				     (= (numDay ?dayToCheck) (numDay ?day)) 
-				     (= (+ (numDay ?dayToCheck) 1) (numDay ?day))
-				     (= (+ (numDay ?day) 1) (numDay ?dayToCheck))
-				   )
-			    )
-			   )
+				(and 
+					(imply (and (predecessor ?contentToCheck ?content) (visualizationDay ?contentToCheck ?dayToCheck))
+						(< (numDay ?dayToCheck) (numDay ?day))
+					)
+					(imply (and (parallel ?contentToCheck ?content) (visualizationDay ?contentToCheck ?dayToCheck)) 
+						(or 
+							(= (numDay ?dayToCheck) (numDay ?day)) 
+							(= (+ (numDay ?dayToCheck) 1) (numDay ?day))
+						)
+					)
+			   	)
 			)
-		      )
+		)
         :effect 
             (and  
 		(asignedContent ?content)

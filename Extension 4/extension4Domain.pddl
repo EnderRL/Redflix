@@ -53,22 +53,21 @@
 					(imply (and (predecessor ?contentToCheck ?content) (visualizationDay ?contentToCheck ?dayToCheck))
 						(< (numDay ?dayToCheck) (numDay ?day))
 					)
-					(imply (and (or (parallel ?contentToCheck ?content) (parallel ?content ?contentToCheck)) (visualizationDay ?contentToCheck ?dayToCheck)) 
+					(imply (and (parallel ?contentToCheck ?content) (visualizationDay ?contentToCheck ?dayToCheck)) 
 						(or 
 							(= (numDay ?dayToCheck) (numDay ?day)) 
 							(= (+ (numDay ?dayToCheck) 1) (numDay ?day))
-							(= (+ (numDay ?day) 1) (numDay ?dayToCheck))
 						)
 					)
-			   )
+			   	)
 			)
 		)
         :effect 
-        (and  
+		(and  
 			(increase (minDay ?day) (minContent ?content))
 			(asignedContent ?content)
 			(visualizationDay ?content ?day)
-            (forall (?content2 - Content)
+            		(forall (?content2 - Content)
 				(when (predecessor ?content ?content2)
 					(decrease (predecessorsToAsign ?content2) 1)
 				)
