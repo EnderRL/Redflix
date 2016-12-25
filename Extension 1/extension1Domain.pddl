@@ -26,7 +26,7 @@
         (maxDay ?C - Content)
     )
     
-     (:action makeDesired
+    (:action makeDesired
         :parameters (?content - Content)
         :precondition (and (desiredContent ?content) (> (predecessorsToAsign ?content) 0))
         :effect
@@ -41,14 +41,14 @@
         :parameters (?content - Content ?day - Day)
         :precondition 
         (and
-			(not (asignedContent ?content))
-			(desiredContent ?content)
-			(= (predecessorsToAsign ?content) 0)
-			(> (numDay ?day) (maxDay ?content))
-		)
+            (not (asignedContent ?content))
+            (desiredContent ?content)
+            (= (predecessorsToAsign ?content) 0)
+            (> (numDay ?day) (maxDay ?content))
+        )
         :effect 
         (and
-		    (asignedContent ?content)
+            (asignedContent ?content)
             (forall (?content2 - Content)
                 (when (predecessor ?content ?content2)
                     (decrease (predecessorsToAsign ?content2) 1)
