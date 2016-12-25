@@ -71,10 +71,10 @@ int main(int argc, char* argv[]) {
             "(:domain redflix)" << endl <<
             "(:objects";
     for (int i = 0; i < numContents; ++i) {
-        cout << endl << "\tc" << i << " - Content";
+        cout << endl << "\tc" << i+1 << " - Content";
     }
     for (int i = 0; i < numContents; ++i) {
-        cout << endl << "\td" << i << " - Day";
+        cout << endl << "\td" << i+1 << " - Day";
     }
 
     cout << endl << ")" << endl << "(:init" << endl;
@@ -86,7 +86,7 @@ int main(int argc, char* argv[]) {
         for (int j = 0; j < random; ++j) ++it;
 
         contentViewed[*it] = true;
-        cout << "\t(asignedContent c" << *it << ")" << endl;
+        cout << "\t(asignedContent c" << *it+1 << ")" << endl;
         listOfContents.erase(it);
     }
 
@@ -96,7 +96,7 @@ int main(int argc, char* argv[]) {
         IteratorI it = listOfContents.begin();
         for (int j = 0; j < random; ++j) ++it;
 
-        cout << "\t(desiredContent c" << *it << ")" << endl;
+        cout << "\t(desiredContent c" << *it+1 << ")" << endl;
         listOfContents.erase(it);
     }
 
@@ -113,7 +113,7 @@ int main(int argc, char* argv[]) {
         Graph[edge.first].push_back(edge.second);
 
         if (not contentViewed[edge.first]) ++predecessorsToAsign[edge.second];
-        cout << "\t(predecessor c" << edge.first << " c" << edge.second  << ")" << endl;
+        cout << "\t(predecessor c" << edge.first+1 << " c" << edge.second+1  << ")" << endl;
 
         possibleEdges.erase(it);
     }
@@ -128,8 +128,8 @@ int main(int argc, char* argv[]) {
         vector<bool> aux(numContents, false);
 
         if (not DFS(edge.first, edge.second, Graph, aux)) {
-            cout << "\t(parallel c" << edge.first << " c" << edge.second  << ")" << endl;
-            cout << "\t(parallel c" << edge.second << " c" << edge.first  << ")" << endl;
+            cout << "\t(parallel c" << edge.first+1 << " c" << edge.second+1  << ")" << endl;
+            cout << "\t(parallel c" << edge.second+1 << " c" << edge.first+1  << ")" << endl;
             ++i;
         }
 
@@ -138,22 +138,22 @@ int main(int argc, char* argv[]) {
     bool achieved = i == numParallels;
 
     for (int i = 0; i < numContents; ++i) {
-        cout << "\t(= (numDay d" << i << ") " << i << ")" << endl;
+        cout << "\t(= (numDay d" << i+1 << ") " << i+1 << ")" << endl;
     }
 
     for (int i = 0; i < numContents; ++i) {
-        cout << "\t(= (minDay d" << i << ") " << 0 << ")" << endl;
+        cout << "\t(= (minDay d" << i+1 << ") " << 0 << ")" << endl;
     }
 
     vector<int> tiempos = {20, 45, 60, 90, 120, 150, 180};
 
     for (int i = 0; i < numContents; ++i) {
         int j = rand()%7;
-        cout << "\t(= (minContent c" << i << ") " << tiempos[j] << ")" << endl;
+        cout << "\t(= (minContent c" << i+1 << ") " << tiempos[j] << ")" << endl;
     }
 
     for (int i = 0; i < numContents; ++i) {
-        cout << "\t(= (predecessorsToAsign c" << i << ") " << predecessorsToAsign[i] << ")" << endl;
+        cout << "\t(= (predecessorsToAsign c" << i+1 << ") " << predecessorsToAsign[i] << ")" << endl;
     }
 
     cout << ")" << endl;
