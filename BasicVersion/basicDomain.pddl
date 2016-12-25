@@ -6,6 +6,7 @@
 
     (:types
         Content
+        Day
     )
 
     (:constants
@@ -21,30 +22,33 @@
     (:functions
     )
     
-   
-    
     (:action makeDesired
         :parameters (?content - Content)
-        :precondition (and (desiredContent ?content) (> (predecessorsToAsign ?content) 0))
+        :precondition (and (desiredContent ?content) (not (asignedPredecessor ?content)))
         :effect 
-            (forall (?content2 - Content)
-                (when (predecessor ?content2 ?content)
-                    (desiredContent ?content2)
-                )
+        (forall (?content2 - Content)
+            (when (predecessor ?content2 ?content)
+                (desiredContent ?content2)
             )
+        )
     )
 
     (:action asignContentToDay
-        :parameters (?content - Content)
-        :precondition (and (not (asignedContent ?content)) (asignedPredecessor ?content))
+        :parameters (?content - Content ?day - Day)
+        :precondition
+        (and
+            (not (asignedContent ?content))
+            (desiredContent ?content)
+            (asignedPredecessor ?content)
+        )
         :effect 
-            (and 
-                (asignedContent ?content) 
-                (forall (?content2 - Content)
-                    (when (predecessor ?content ?content2)
-                        (asignedPredecessor ?content2)
-                    )
+        (and 
+            (asignedContent ?content) 
+            (forall (?content2 - Content)
+                (when (predecessor ?content ?content2)
+                    (asignedPredecessor ?content2)
                 )
             )
+        )
     )
 )
