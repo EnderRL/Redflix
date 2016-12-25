@@ -17,7 +17,6 @@
         (predecessor ?C1 - Content ?C2 - Content) ;Contenido C1 se tiene que ver antes que C2
         (asignedContent ?C - Content)
         (desiredContent ?C - Content)
-
     )
 
     (:functions
