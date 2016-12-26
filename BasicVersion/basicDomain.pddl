@@ -1,4 +1,4 @@
-﻿(define (domain redflix)
+(define (domain redflix)
 
     (:requirements
       :typing
@@ -6,7 +6,6 @@
 
     (:types
         Content
-        Day
     )
 
     (:constants
@@ -34,7 +33,7 @@
     )
 
     (:action asignContentToDay
-        :parameters (?content - Content ?day - Day)
+        :parameters (?content - Content)
         :precondition
         (and
             (not (asignedContent ?content))

@@ -72,9 +72,9 @@ int main(int argc, char* argv[]) {
     for (int i = 0; i < numContents; ++i) {
         cout << endl << "\tc" << i+1 << " - Content";
     }
-    for (int i = 0; i < numContents; ++i) {
+    /*for (int i = 0; i < numContents; ++i) {
         cout << endl << "\td" << i+1 << " - Day";
-    }
+    }*/
 
     cout << endl << ")" << endl << "(:init" << endl;
 
