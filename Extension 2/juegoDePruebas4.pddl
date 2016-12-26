@@ -14,6 +14,8 @@
        (desiredContent c3)
        (parallel c1 c3)
        (parallel c2 c3)
+       (parallel c3 c1)
+       (parallel c3 c2)
        (= (predecessorsToAsign c1) 0)
        (= (predecessorsToAsign c2) 0)
        (= (predecessorsToAsign c3) 0)
