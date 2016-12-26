@@ -1,0 +1,40 @@
+
+ff: parsing domain file
+domain 'REDFLIX' defined
+ ... done.
+ff: parsing problem file
+problem 'BASICPROBLEM1' defined
+ ... done.
+
+
+translating negated cond for predicate ASIGNEDCONTENT
+no metric specified.
+
+ff: search configuration is Enforced Hill-Climbing, if that fails then best-first search.
+Metric is plan length.
+NO COST MINIMIZATION (and no cost-minimizing relaxed plans).
+
+Cueing down from goal distance:    6 into depth [1]
+                                   5            [1]
+                                   4            [1]
+                                   3            [1]
+                                   2            [1]
+                                   1            [1]
+                                   0            
+
+ff: found legal plan as follows
+step    0: ASIGNCONTENTTODAY C6 D3
+        1: ASIGNCONTENTTODAY C5 D3
+        2: ASIGNCONTENTTODAY C4 D3
+        3: ASIGNCONTENTTODAY C3 D2
+        4: ASIGNCONTENTTODAY C2 D2
+        5: ASIGNCONTENTTODAY C1 D2
+
+time spent:    0.00 seconds instantiating 24 easy, 0 hard action templates
+               0.00 seconds reachability analysis, yielding 18 facts and 24 actions
+               0.00 seconds creating final representation with 12 relevant facts, 36 relevant fluents
+               0.00 seconds computing LNF
+               0.00 seconds building connectivity graph
+               0.00 seconds searching, evaluating 7 states, to a max depth of 1
+               0.00 seconds total time
+
